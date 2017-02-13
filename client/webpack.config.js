@@ -6,7 +6,7 @@ module.exports = {
         'default': './src/app.js'
     },
     output: {
-        path: path.join(__dirname, '/dist/js'),
+        path: path.join(__dirname, '/dist'),
         filename: '[name].bundle.js' // default.bundle.js
     },
     module: {

@@ -7,6 +7,6 @@
 </head>
 <body>
 	<div id="container"></div>
-	<script type="text/javascript" src="dist/js/default.bundle.js"></script>
+	<script type="text/javascript" src="dist/default.bundle.js"></script>
 </body>
 </html>

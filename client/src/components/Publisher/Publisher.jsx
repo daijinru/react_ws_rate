@@ -2,13 +2,13 @@ import React from 'react';
 import style from './Publisher.css';
 
 class Publisher extends React.Component{
-	constructor(...args){
-		super(...args);
+    constructor(props){
+        super(props);
         this.state = {
+            name:this.props.data.name,
             content:''
         }
-	}
-
+    }
     // 获取焦点
     handleFocus(){
         this.refs.textElDiv.style.borderColor = '#fa7d3c';
@@ -29,13 +29,14 @@ class Publisher extends React.Component{
     }
 
 	render(){
+        const name = this.state.name;
         const length = this.state.content.length;
-        const disable = (this.state.content.length > 0 && this.state.content.length <= 140) ? '' : ' ' + style.disabled;
+        const disable = (length > 0 && length <= 140) ? '' : ' ' + style.disabled;
 		return (
 			<div className={style.publisher}>
                 <div className={style.title}>
                     <div ref="hot">
-                        <a href="#">Hello world!!</a>
+                        <a href="#">{name},Hello world!!</a>
                     </div>
                     <div className={style.tips} ref="tips">
                         <span>{length > 140 ? '已超出' : '还可以输入'}<strong>{length > 140 ? length - 140 : 140 - length}</strong>字</span>

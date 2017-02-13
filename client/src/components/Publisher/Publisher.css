@@ -68,10 +68,6 @@
     outline: none;
 }
 
-:local .publishBtn:hover{
-    background:#ffc09f;
-}
-
 :local .disabled {
     background: #ffc09f;
     color: #fff;
