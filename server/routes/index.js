@@ -4,6 +4,6 @@ var router = express.Router();
 var indexModels = require('../models/indexModel.js');
 
 /* GET home page. */
-router.get('/',indexModels.index);
+router.get('/',indexModels.wsChat);
 
 module.exports = router;

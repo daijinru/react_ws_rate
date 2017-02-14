@@ -6,7 +6,8 @@ class Publisher extends React.Component{
         super(props);
         this.state = {
             name:this.props.data.name,
-            content:''
+            content:'',
+            ws:''
         }
     }
     // 获取焦点
@@ -27,6 +28,26 @@ class Publisher extends React.Component{
             content:e.target.value
         })
     }
+    // websocket初始化
+    componentDidMount(){
+        const ws = new WebSocket("ws://localhost:3001");
+        ws.onopen = function(e){
+            console.log('connection to server opened');
+        }
+        this.state.ws = ws;
+    }
+    // 点击发送信息
+    handleWebsocket(){
+        const length = this.state.content.length;
+        if (length <= 0 || length > 140) {
+            alert('字数不符合要求')
+            return
+        }
+
+        const ws = this.state.ws;
+        ws.send(this.state.content);
+        this.refs.infor.value = "";
+    }
 
 	render(){
         const name = this.state.name;
@@ -43,10 +64,10 @@ class Publisher extends React.Component{
                     </div>
                 </div>            
                 <div className={style.textElDiv} ref="textElDiv">
-                    <textarea onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} onChange={this.handleChange.bind(this)}></textarea>
+                    <textarea ref="infor" onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} onChange={this.handleChange.bind(this)}></textarea>
                 </div>
                 <div className={style.btnWrap}>
-                    <a className={style.publishBtn + disable} href="javascript:void(0)">发布</a>
+                    <a className={style.publishBtn + disable} onClick={this.handleWebsocket.bind(this)} href="javascript:void(0)">发布</a>
                 </div>
             </div>
 		)
