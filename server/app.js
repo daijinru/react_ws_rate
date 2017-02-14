@@ -12,6 +12,15 @@ var users = require('./routes/users');
 
 var app = express();
 
+var WebSocketServer = require('ws').Server,
+wss = new WebSocketServer({ port: 3001 });
+wss.on('connection', function (ws) {
+    console.log('client connected');
+    ws.on('message', function (message) {
+        console.log(message);
+    });
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, '../client/views'));
 app.set('view engine', 'tpl');

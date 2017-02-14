@@ -30,7 +30,7 @@ class Publisher extends React.Component{
     }
     // websocket初始化
     componentDidMount(){
-        const ws = new WebSocket("ws://localhost:3001");
+        const ws = new WebSocket("ws://104.194.84.202:3001");
         ws.onopen = function(e){
             console.log('connection to server opened');
         }
@@ -47,6 +47,8 @@ class Publisher extends React.Component{
         const ws = this.state.ws;
         ws.send(this.state.content);
         this.refs.infor.value = "";
+
+	ws.onmessage = function(e){console.log(e.data)}
     }
 
 	render(){
