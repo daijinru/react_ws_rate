@@ -12,6 +12,7 @@ exports.websocket = function() {
         ws.on('message', function(msg) {
             msg = time + '. ' + msg + '\n';
             console.log(msg);
+            ws.send(msg);
             time++;
             fs.writeFile('chat.text', msg, { 'flag': 'a' }, function(err) {
                 if (err) throw err;
