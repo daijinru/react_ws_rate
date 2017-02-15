@@ -4,6 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 7662efb... add fs write text
 var swig = require('swig');
 
 var index = require('./routes/index');
@@ -11,9 +15,20 @@ var users = require('./routes/users');
 
 var app = express();
 
+<<<<<<< HEAD
 // websocket chat
 var websocket = require('./libs/websocket.js');
 websocket.websocket();
+=======
+var WebSocketServer = require('ws').Server,
+wss = new WebSocketServer({ port: 3001 });
+wss.on('connection', function (ws) {
+    console.log('client connected');
+    ws.on('message', function (message) {
+        console.log(message);
+    });
+});
+>>>>>>> parent of 7662efb... add fs write text
 
 // view engine setup
 app.set('views', path.join(__dirname, '../client/views'));
