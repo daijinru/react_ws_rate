@@ -38,3 +38,6 @@ jspm_packages
 
 # bundle.js
 client/dist/default.bundle.js
+
+#chat.text
+chat.text
