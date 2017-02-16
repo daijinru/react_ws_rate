@@ -1,0 +1,22 @@
+:local p{
+	margin:0;
+}
+
+:local .marbot{
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #cdcdcd;
+}
+
+:local .green{
+	color:#35b558;
+}
+
+:local .red{
+	color:#f55c00;
+}
+
+:local .tips{
+	font-size: 12px;
+	margin-top:10px;
+}

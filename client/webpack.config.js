@@ -13,6 +13,7 @@ module.exports = {
         loaders: [{
             test: /\.js|jsx$/,
             loader: 'babel-loader',//babel-loader进行转码
+            exclude:/node_modules/,
             query: {
                 presets: ['react', 'es2015']//转码规则
             }
@@ -21,11 +22,11 @@ module.exports = {
             loaders: 'style-loader!css-loader?modules'
         }]
     },
-    plugins: [
-        new Webpack.optimize.UglifyJsPlugin({
-            compress: {
-            	warnings:false
-            }
-        })
-    ]
+    // plugins: [
+    //     new Webpack.optimize.UglifyJsPlugin({
+    //         compress: {
+    //         	warnings:false
+    //         }
+    //     })
+    // ]
 }
