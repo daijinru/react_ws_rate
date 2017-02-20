@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './components/Navbar/Navbar.jsx';
+import Header from './components/Header/Header.jsx';
 import Currency from './components/Currency/Currency.jsx';
 
 class Group extends React.Component{
@@ -59,16 +60,38 @@ class Group extends React.Component{
 						"name":"英镑",
 						"time":"15:30:01"
 					}
-				}
-			}
+				},
+				bankCP:[]
+			},
+			defaultBankCP:0
 		}
 	}
+
+	componentWillMount(){
+		let { rate,bankCP } = this.state.data;
+
+		for (let i in rate){
+			bankCP.push(rate[i].bankConversionPri);
+		}
+	}
+
+	handleChangeHeader(event){
+		let index = event.currentTarget.dataset.index;
+		let defaultBankCP = this.state.defaultBankCP;
+
+		this.setState({defaultBankCP:index})
+	} 
+
+
 	render(){
-		const { rate } = this.state.data;
+		let { rate,bankCP } = this.state.data;
+		let defaultBankCP = this.state.defaultBankCP;
+		console.log(defaultBankCP)
 		return(
 			<div>
 				<Navbar />
-				<Currency data={ rate }/>
+				<Header data={ bankCP[defaultBankCP] } />
+				<Currency data={ rate } onHeaderSubmit={this.handleChangeHeader.bind(this)} />
 			</div>
 		)
 	}

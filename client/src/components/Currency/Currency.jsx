@@ -12,8 +12,8 @@ class Currency extends React.Component{
 	}
 
 	componentWillMount(){
-		const data = this.state.rate;
-		const arr = [];
+		let data = this.state.rate;
+		let arr = [];
 
 		for (let i in data){
 			arr.push(data[i]);
@@ -22,9 +22,13 @@ class Currency extends React.Component{
 		this.state.dataArr = arr;
 	}
 
+	clickHandle(event){
+		this.props.onHeaderSubmit(event);
+	}
+
 	render(){
-		const eleData = this.state.dataArr.map((item) => {
-			return <Row className={style.marbot}>
+		let eleData = this.state.dataArr.map((item,index) => {
+			return <Row className={style.marbot} data-index={index} onClick={this.clickHandle.bind(this)}>
 				<Col xs={4} md={4}>
 					<p>{item.name}</p>
 					<p>{item.date}</p>
