@@ -86,11 +86,14 @@ class Group extends React.Component{
 	render(){
 		let { rate,bankCP } = this.state.data;
 		let defaultBankCP = this.state.defaultBankCP;
-		console.log(defaultBankCP)
+		let bankCPdata = {
+			'bankCP':bankCP,
+			'defaultBankCP':defaultBankCP
+		}
 		return(
 			<div>
 				<Navbar />
-				<Header data={ bankCP[defaultBankCP] } />
+				<Header data={ bankCPdata } />
 				<Currency data={ rate } onHeaderSubmit={this.handleChangeHeader.bind(this)} />
 			</div>
 		)
