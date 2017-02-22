@@ -1,23 +1,30 @@
 'use strict';
 
-var fs = require('fs');
+var request = require('request');
+
 var WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ port: 3001 });
 
-// wss 是 已配置端口号的websocket对象
-exports.websocket = function() {
-    var time = 1;
-    wss.on('connection', function(ws) {
+function random(){
+    var r = Math.round(Math.random() * 10);
+    return r
+}
+
+exports.websocket = function(){
+    wss.on('connection',function(ws){
         console.log('client connected');
-        ws.on('message', function(msg) {
-            msg = time + '. ' + msg + '\n';
+
+        var t = setInterval(function(){
+            ws.send(random())
+        },1000)
+
+        ws.on('message',function(msg){
             console.log(msg);
-            ws.send(msg);
-            time++;
-            fs.writeFile('chat.text', msg, { 'flag': 'a' }, function(err) {
-                if (err) throw err;
-                console.log('saved!')
-            })
+        })
+
+        ws.on('close',function(){
+            console.log('connection close');
+            clearInterval(t);
         })
     })
 }

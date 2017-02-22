@@ -48,7 +48,7 @@ class Currency extends React.Component{
 		})
 
 		return(
-			<Grid>
+			<Grid className={style.martop}>
 				{eleData}
 				<Row className={style.tips}>
 					<Col xs={12}>

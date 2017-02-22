@@ -25,7 +25,7 @@ class Header extends React.Component{
 	render(){
 
 		return(
-			<Grid>
+			<Grid className={style.martop}>
 				<Row>
 					<Col xs={12} md={12}>
 						<h4 className={style.h4}>BankConversionPri</h4>

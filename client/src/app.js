@@ -63,15 +63,30 @@ class Group extends React.Component{
 				},
 				bankCP:[]
 			},
-			defaultBankCP:0
+			defaultBankCP:0,
+			random:''
 		}
 	}
 
 	componentWillMount(){
 		let { rate,bankCP } = this.state.data;
-
 		for (let i in rate){
 			bankCP.push(rate[i].bankConversionPri);
+		}
+	}
+
+	componentDidMount(){
+		const that = this;
+		const ws = new WebSocket("ws://localhost:3001");
+		ws.onopen = function(e){
+			console.log('connection opened');
+		}
+		ws.onmessage = function(e){
+			console.log(e.data);
+			let random = that.state.random;
+			that.setState({
+				random:e.data
+			})
 		}
 	}
 
